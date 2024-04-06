@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criminal record managment system</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h1>Criminal Record Form</h1>
+      </header>
+    <div class="upper-btn-box">
+    <div class="left-box">
+       <button><i class="fa fa-plus"></i>add criminal </button>
+       <button style="background-color: #df0c25;"><i class="fa fa-eraser" ></i>delete all</button>
+    </div>
+    <div class="right-box">
+        <i class="fa fa-search"></i>
+        <input type="text " id="criminalid" placeholder="Enter criminal name/id">
+        <button>Search</button>
+    </div>
+    </div>
+    <div class="table-box">
+         <table>
+             <tr>
+              <th>Sr No.</th>
+              <th>picture</th>
+              <th>Identification Card  No.</th>
+              <th>Full Name</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Date of Birth</th>
+              <th>Father Name</th>
+              <th>Mother Name</th>
+              <th>Crime Date</th>
+              <th>Perpetrator's Name</th>
+              <th>Place of Crime</th>
+              <th>Time of Crime</th>
+              <th> Actions</th>
+            </tr>
+            <tr>
+                <td>helo</td>
+                <td>fkkff</td>
+                <td>ddddd</td>
+                <td>kjh</td>
+                <td>nbvgg</td>
+                <td>viaks</td>
+                <td>pawan</td>
+                <td>shiv mayank</td>
+                <td>sssss</td>
+                <td>mayank</td>
+                <td>snssjqh</td>
+                <td>prakhararjun</td>
+                <td>jshhj</td>
+                <td><button><i class="fa fa-eye"></i></button>
+                <button style="background-color: #df0c25;"><i class="fa fa-trash" ></i></button></td>
+            </tr>
+         </table>
+     </div>
+     <div class="modal">
+        <i class="fa fa-times-circle close-icon"></i>
+        <div class="left-modal">
+            <div class="img-box">
+                <img src="image/pic1.png" width="150px" height="150" alt=" choose file" >
+                 <i class="fa fa-plus"></i>
+                 <input type="file" >
+            </div>
+        </div>
+        <div class="right-modal">
+            <h3>Personal Details</h3>
+            <div class="input-box">
+             <!-- Input fields for criminal details -->
+              <label for="idCardNumber">Identification Card No.:</label>
+              <input type="text" id="idCardNumber" required>
+            </div>
+              <div class="input-box">
+              <label for="fullName">Full Name:</label>
+              <input type="text" id="fullName" required>
+            </div>
+            <div class="input-box">
+              <label for="gender">Gender:</label>
+              <input type="select" id="gender" required>
+            </div>
+            <div class="input-box">
+              <label for="age">Age:</label>
+              <input type="number" id="age" required>
+            </div>
+              <div class="input-box">
+              <label for="dob">Date of Birth:</label>
+              <input type="date" id="dob" required>
+            </div>
+              <div class="input-box">
+              <label for="fatherFullName">Father Name:</label>
+              <input type="text" id="fatherFullName" required>
+            </div>
+              <div class="input-box">
+              <label for="motherFullName">Mother Name:</label>
+              <input type="text" id="motherFullName" required>
+            </div>
+              <h3>Crime Details</h3>
+              <div class="input-box">
+              <label for="crimeDate">Crime Date:</label>
+              <input type="date" id="crimeDate" required>
+            </div>
+              <div class="input-box">
+              <label for="crimePerpetrator">Perpetrator's Name:</label>
+              <input type="text" id="crimePerpetrator" required>
+            </div>
+              <div class="input-box">
+              <label for="crimePlace">Place of Crime:</label>
+              <input type="text" id="crimePlace" required>
+            </div>
+              <div class="input-box">
+              <label for="crimeTime">Time of Crime:</label>
+              <input type="time" id="crimeTime" required>
+            </div>
+            <div class="input-box">
+                <button>Register</button>
+                <button disabled="disabled" style=" background-color:#EE534F;">Update</button>
+            </div>
+        </div>
+     </div>
+    
+</body>
+</html>
