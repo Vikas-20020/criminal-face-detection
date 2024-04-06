@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criminal Record Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  .container {
+    margin: auto;
+    width: 80%; /* Adjusted width */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .container h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  label {
+    font-weight: bold;
+  }
+  input[type="text"], input[type="number"], input[type="date"], input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+  select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  #searchInput {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  #searchButton {
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Criminal Record Form</h1>
+</header>
+
+<div class="container">
+  <h2>Personal Details</h2>
+  <form id="criminalRecordForm">
+    <!-- Input fields for criminal details -->
+    <label for="idCardNumber">Identification Card Number:</label>
+    <input type="text" id="idCardNumber" required><br>
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" required><br>
+    <label for="gender">Gender:</label>
+    <select id="gender" required>
+      <option value="">Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select><br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" required><br>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" required><br>
+    <label for="fatherFullName">Father's Full Name:</label>
+    <input type="text" id="fatherFullName" required><br>
+    <label for="motherFullName">Mother's Full Name:</label>
+    <input type="text" id="motherFullName" required><br>
+
+    <h2>Crime Details</h2>
+    <label for="crimeDate">Crime Date:</label>
+    <input type="date" id="crimeDate" required><br>
+    <label for="crimePerpetrator">Perpetrator's Name:</label>
+    <input type="text" id="crimePerpetrator" required><br>
+    <label for="crimePlace">Place of Crime:</label>
+    <input type="text" id="crimePlace" required><br>
+    <label for="crimeTime">Time of Crime:</label>
+    <input type="time" id="crimeTime" required><br>
+    <h2>Uploads</h2>
+    <label for="criminalImage">Criminal's Photo:</label>
+    <input type="file" id="criminalImage" accept="image/*" required><br><br>
+    
+    <label for="fingerprint">Criminal's Fingerprint:</label>
+    <input type="file" id="fingerprint" accept=".bmp,.jpg,.jpeg,.png" required><br>
+    <!-- ... -->
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
+  
+  <div class="filter">
+    <label for="searchInput">Search:</label>
+    <input type="search" id="searchInput" placeholder="Enter name or ID card number">
+    <button id="searchButton" onclick="search()">Search</button>
+  </div>
+  
+  <h2>Records</h2>
+  <table id="recordsTable">
+    <thead>
+      <tr>
+        <th>Identification Card Number</th>
+        <th>Full Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Date of Birth</th>
+        <th>Father's Full Name</th>
+        <th>Mother's Full Name</th>
+        <th>Crime Date</th>
+        <th>Perpetrator's Name</th>
+        <th>Place of Crime</th>
+        <th>Time of Crime</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- Records will be added here dynamically -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Load data from localStorage
+  let criminalDatabase = JSON.parse(localStorage.getItem('criminalDatabase')) || [];
+
+  // Function to save data to localStorage
+  function saveToLocalStorage() {
+    localStorage.setItem('criminalDatabase', JSON.stringify(criminalDatabase));
+  }
+
+  // Function to add a new criminal record
+  function submitForm() {
+    // Get form values
+    const idCardNumber = document.getElementById('idCardNumber').value;
+    const fullName = document.getElementById('fullName').value;
+    const gender = document.getElementById('gender').value;
+    const age = document.getElementById('age').value;
+    const dob = document.getElementById('dob').value;
+    const fatherFullName = document.getElementById('fatherFullName').value;
+    const motherFullName = document.getElementById('motherFullName').value;
+    const crimeDate = document.getElementById('crimeDate').value;
+    const perpetratorName = document.getElementById('crimePerpetrator').value;
+    const placeOfCrime = document.getElementById('crimePlace').
+
+value;
+    const timeOfCrime = document.getElementById('crimeTime').value;
+
+    // Get file inputs
+    const criminalImageFile = document.getElementById('criminalImage').files[0];
+    const fingerprintFile = document.getElementById('fingerprint').files[0];
+
+    // Read files asynchronously
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const criminalImage = event.target.result;
+      // Read fingerprint file
+      const reader2 = new FileReader();
+      reader2.onload = function(event) {
+        const fingerprint = event.target.result;
+        // Create criminal object
+        const criminal = {
+          idCardNumber,
+          fullName,
+          gender,
+          age,
+          dob,
+          fatherFullName,
+          motherFullName,
+          crimeDate,
+          perpetratorName,
+          placeOfCrime,
+          timeOfCrime,
+          criminalImage, // Add criminal's photo
+          fingerprint // Add criminal's fingerprint
+        };
+
+        // Add criminal to database
+        criminalDatabase.push(criminal);
+
+        // Save to localStorage
+        saveToLocalStorage();
+
+        // Display updated records
+        displayRecords();
+      }
+      reader2.readAsDataURL(fingerprintFile); // Read fingerprint file as data URL
+    };
+    reader.readAsDataURL(criminalImageFile); // Read criminal image file as data URL
+  }
+
+  // Function to display records
+  function displayRecords() {
+    const tableBody = document.getElementById('tableBody');
+    tableBody.innerHTML = '';
+
+    criminalDatabase.forEach(criminal => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${criminal.idCardNumber}</td>
+        <td>${criminal.fullName}</td>
+        <td>${criminal.gender}</td>
+        <td>${criminal.age}</td>
+        <td>${criminal.dob}</td>
+        <td>${criminal.fatherFullName}</td>
+        <td>${criminal.motherFullName}</td>
+        <td>${criminal.crimeDate}</td>
+        <td>${criminal.perpetratorName}</td>
+        <td>${criminal.placeOfCrime}</td>
+        <td>${criminal.timeOfCrime}</td>
+        <td>
+          <button onclick="viewRecord('${criminal.idCardNumber}')">View</button>
+          <button onclick="editRecord('${criminal.idCardNumber}')">Edit</button>
+          <button onclick="deleteRecord('${criminal.idCardNumber}')">Delete</button>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  // Function to search records
+  function search() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const searchResults = criminalDatabase.filter(criminal =>
+      criminal.fullName.toLowerCase().includes(searchInput) ||
+      criminal.idCardNumber.toLowerCase().includes(searchInput)
+    );
+    displayRecords(searchResults);
+  }
+
+  // Function to view record
+  function viewRecord(idCardNumber) {
+    const criminal = criminalDatabase.find(criminal => criminal.idCardNumber === idCardNumber);
+    alert(`View Record:\n${JSON.stringify(criminal, null, 2)}`);
+  }
+
+  // Function to edit record
+  function editRecord(idCardNumber) {
+    const index = criminalDatabase.findIndex(criminal => criminal.idCardNumber === idCardNumber);
+    const criminal = criminalDatabase[index];
+
+    // Example: Populate form fields with criminal data
+    document.getElementById('idCardNumber').value = criminal.idCardNumber;
+    document.getElementById('fullName').value = criminal.fullName;
+    // Populate other fields similarly
+
+    // Remove the criminal from the database
+    criminalDatabase.splice(index, 1);
+
+    // Save to localStorage
+    saveToLocalStorage();
+
+    // Display updated records
+    displayRecords();
+  }
+
+  // Function to delete record
+  function deleteRecord(idCardNumber) {
+    const index = criminalDatabase.findIndex(criminal => criminal.idCardNumber === idCardNumber);
+    if (index !== -1) {
+      criminalDatabase.splice(index, 1);
+      saveToLocalStorage();
+      displayRecords();
+      alert('Record deleted successfully.');
+    } else {
+      alert('Record not found.');
+    }
+  }
+
+  // Initial display of records
+  displayRecords();
+</script>
+
+</body>
+</html>

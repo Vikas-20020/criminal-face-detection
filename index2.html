@@ -1,0 +1,246 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>FACE DETECTION AND RECOGNITION SYSTEM</title>
+    <link rel="stylesheet" href="style1.css">
+     <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:brown; /* Replace 'background.jpg' with your image */
+            background-size: cover;
+            background-position: top;
+            color: #0a0a0a;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 5px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label.upload-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color:red;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        label.upload-btn:hover {
+            background-color: #0056b3;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #201c1c;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #17d557;
+        }
+    </style>
+   
+</head>
+<body>
+    <header width="500">
+        <div>
+           
+           
+            <img src="image/image.jpg" height=" 190px" alt="My Logo">
+            <h2 >FIND CRIMINAL BY IMAGE</h2>
+        </div>
+    </header>
+    <table style="border-collapse: collapse; width: 100%;">
+        <tr style="background-color: #ebe3e3;">
+            <td style="border: 1px solid #ebe5e5; padding: 8px;"><li><a href="#home">Home</a></li></td>
+            <td style="border: 1px solid #f3f0f0; padding: 8px;"><li><a href="#features">Features</a></li></td>
+            <td style="border: 1px solid #efecec; padding: 8px;"><li><a href="#history">History</a></li></td>
+            <td style="border: 1px solid #f1f0f0; padding: 8px;"><li><a href="#about">About</a></li></td>
+        </tr>
+    </table> 
+    <!-- <div class="container">
+        <h2>Upload Image</h2>
+        <form action="#" method="post" enctype="multipart/form-data">
+            <table style="border-collapse: collapse; width: 80%;" >
+                <tr style="background-color: #69bffc;">
+                    <td style="border: 1px solid #dddddd; padding: 20px;"><div class="form-group">
+                <label for="image">Choose Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            <button type="submit" >Upload</button>
+        </td>
+    </tr> 
+    </table><div class="container"> -->
+        
+        <div class="container">
+            <h1>Find Criminals</h1>
+            <p>Upload an image or video to identify criminals</p>
+            <form action="#" method="post" enctype="multipart/form-data">
+                <table style="border-collapse: collapse; width: 80%;" >
+                    <tr style="background-color: #edf0f1;">
+                        <td style="border: 1px solid #dddddd; padding: 20px;"> 
+                            <!-- <div class="form-group"> <h1>Find Criminals</h1>
+            <p>Upload an image or video to identify criminals</p>
+             -->
+             <input type="file" id="fileInput" accept="image/,video/" onchange="handleFile()">
+            <label for="fileInput" class="upload-btn">Choose File</label>
+            
+            <button id="submitButton" style="display: none;" onclick="submitFile()">Submit</button>
+        </td>
+    </tr> 
+    </table>
+        </div>
+
+<script>
+    function handleFile() {
+        var fileInput = document.getElementById('fileInput');
+        var submitButton = document.getElementById('submitButton');
+        
+        if (fileInput.files.length > 0) {
+            submitButton.style.display = 'block';
+        } else {
+            submitButton.style.display = 'none';
+        }
+    }
+    
+    function submitFile() {
+        // Implement your submission logic here
+        alert('File submitted for processing');
+    }
+</script>
+
+    
+<footer>
+        <p>&copy; 2024 My Awesome Website. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+     
+</body>
+</html>  
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Criminals</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:brown; /* Replace 'background.jpg' with your image */
+            background-size: cover;
+            background-position: top;
+            color: #fff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label.upload-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color:red;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        label.upload-btn:hover {
+            background-color: #0056b3;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>-->
+
+ <!-- <div class="container">
+    <h1>Find Criminals</h1>
+    <p>Upload an image or video to identify criminals</p>
+    
+    <input type="file" id="fileInput" accept="image/,video/" onchange="handleFile()">
+    <label for="fileInput" class="upload-btn">Choose File</label>
+    
+    <button id="submitButton" style="display: none;" onclick="submitFile()">Submit</button>
+</div>
+
+<script>
+    function handleFile() {
+        var fileInput = document.getElementById('fileInput');
+        var submitButton = document.getElementById('submitButton');
+        
+        if (fileInput.files.length > 0) {
+            submitButton.style.display = 'block';
+        } else {
+            submitButton.style.display = 'none';
+        }
+    }
+    
+    function submitFile() {
+        // Implement your submission logic here
+        alert('File submitted for processing');
+    }
+</script>
+
+</body>
+</html>  --> 
